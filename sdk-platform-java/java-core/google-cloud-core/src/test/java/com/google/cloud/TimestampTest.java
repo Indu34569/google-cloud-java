@@ -103,6 +103,13 @@ class TimestampTest {
   }
 
   @Test
+  void testOf_preEpochSubSecond() {
+    java.sql.Timestamp input = new java.sql.Timestamp(-500);
+    Timestamp timestamp = Timestamp.of(input);
+    assertEquals("1969-12-31T23:59:59.500000000Z", timestamp.toString());
+  }
+
+  @Test
   void testOf_onEpoch() {
     String expectedTimestampString = "1970-01-01T00:00:00Z";
     java.sql.Timestamp input = new java.sql.Timestamp(0);
